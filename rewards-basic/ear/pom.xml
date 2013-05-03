@@ -28,78 +28,85 @@
               <artifactId>rewards-basic-war</artifactId>
               <contextRoot>rewards-basic</contextRoot>
             </webModule>
+            
+            <!-- 
+            Caused by: org.jboss.as.server.deployment.DeploymentUnitProcessingException: JBAS016703: Module may not be a child of the EAR's library directory. Library directory: lib, module file name: lib/kie-api-6.0.0.Beta2.jar
+            https://access.redhat.com/site/solutions/318933
+            should be fixed in wildfly 8.0 https://issues.jboss.org/browse/WFLY-29
+            -->
+
             <jarModule>
-              <groupId>org.drools</groupId>
-              <artifactId>knowledge-api</artifactId>
+              <groupId>org.kie</groupId>
+              <artifactId>kie-api</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.drools</groupId>
               <artifactId>drools-core</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.mvel</groupId>
               <artifactId>mvel2</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>com.thoughtworks.xstream</groupId>
               <artifactId>xstream</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.drools</groupId>
               <artifactId>drools-compiler</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.eclipse.jdt.core.compiler</groupId>
               <artifactId>ecj</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.antlr</groupId>
               <artifactId>antlr-runtime</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.drools</groupId>
               <artifactId>drools-decisiontables</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.drools</groupId>
               <artifactId>drools-templates</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.drools</groupId>
               <artifactId>drools-persistence-jpa</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
 
             <jarModule>
               <groupId>net.sourceforge.jexcelapi</groupId>
               <artifactId>jxl</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>com.google.protobuf</groupId>
               <artifactId>protobuf-java</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
 
 
@@ -108,43 +115,43 @@
               <groupId>org.jbpm</groupId>
               <artifactId>jbpm-flow</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.jbpm</groupId>
               <artifactId>jbpm-flow-builder</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.jbpm</groupId>
               <artifactId>jbpm-bam</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.jbpm</groupId>
               <artifactId>jbpm-bpmn2</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.jbpm</groupId>
-              <artifactId>jbpm-human-task</artifactId>
+              <artifactId>jbpm-human-task-services</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.jbpm</groupId>
               <artifactId>jbpm-persistence-jpa</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
             <jarModule>
               <groupId>org.jbpm</groupId>
               <artifactId>jbpm-workitems</artifactId>
               <includeInApplicationXml>true</includeInApplicationXml>
-              <bundleDir>/lib</bundleDir>
+              <bundleDir>/</bundleDir>
             </jarModule>
 
           </modules>

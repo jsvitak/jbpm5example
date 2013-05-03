@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import org.jbpm.task.query.TaskSummary;
+import org.kie.api.task.model.TaskSummary;
 
 @Local
 public interface TaskLocal {

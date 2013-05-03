@@ -1,4 +1,4 @@
-<%@ page import="org.jbpm.task.query.TaskSummary" %>
+<%@ page import="org.kie.api.task.model.TaskSummary" %>
 <%@ page import="java.util.List" %>
 <html>
 <head>
