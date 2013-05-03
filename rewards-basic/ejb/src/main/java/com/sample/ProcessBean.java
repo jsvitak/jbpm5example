@@ -8,19 +8,14 @@ import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
-import javax.enterprise.inject.spi.BeanManager;
 import javax.inject.Inject;
-import javax.inject.Qualifier;
 import javax.transaction.Status;
 import javax.transaction.UserTransaction;
 
-import org.jbpm.runtime.manager.impl.RuntimeEnvironmentBuilder;
-import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.manager.RuntimeEngine;
 import org.kie.api.runtime.manager.RuntimeManager;
 import org.kie.api.runtime.process.ProcessInstance;
-import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.runtime.manager.RuntimeEnvironment;
 import org.kie.internal.runtime.manager.RuntimeManagerFactory;
 import org.kie.internal.runtime.manager.context.EmptyContext;
@@ -29,33 +24,21 @@ import org.kie.internal.runtime.manager.context.EmptyContext;
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ProcessBean implements ProcessLocal {
 
-    //@PersistenceUnit(unitName = "org.jbpm.persistence.jpa")
-    //private EntityManagerFactory emf;
-
     @Resource
     private UserTransaction ut;
 
     @Inject
     private RuntimeManagerFactory managerFactory;
     
-    //@Inject
-    //private BeanManager beanManager;
-    
-    //@Inject
-    //private RuntimeEnvironment runtimeEnvironment;
+    @Inject
+    @RewardsRuntimeEnvironment
+    private RuntimeEnvironment runtimeEnvironment;
     
     public long startProcess(String recipient) throws Exception {
      
-//        RuntimeEnvironmentBuilder builder = RuntimeEnvironmentBuilder.getDefault()
-//                .entityManagerFactory(emf)
-//                .registerableItemsFactory(InjectableRegisterableItemsFactory.getFactory(beanManager, null));
-        RuntimeEnvironmentBuilder builder = RuntimeEnvironmentBuilder.getDefault();
-        
-        builder.addAsset(ResourceFactory.newClassPathResource("rewards-basic.bpmn"), ResourceType.BPMN2);
-        RuntimeManager manager = managerFactory.newSingletonRuntimeManager(builder.get());
+        RuntimeManager manager = managerFactory.newSingletonRuntimeManager(runtimeEnvironment);
         RuntimeEngine runtime = manager.getRuntimeEngine(EmptyContext.get());
         KieSession ksession = runtime.getKieSession();
-        //TaskService taskService = runtime.getTaskService();
         
         long processInstanceId = -1;
         

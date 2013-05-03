@@ -18,6 +18,7 @@ import org.kie.api.runtime.manager.RuntimeEngine;
 import org.kie.api.runtime.manager.RuntimeManager;
 import org.kie.api.task.TaskService;
 import org.kie.api.task.model.TaskSummary;
+import org.kie.internal.runtime.manager.RuntimeEnvironment;
 import org.kie.internal.runtime.manager.RuntimeManagerFactory;
 import org.kie.internal.runtime.manager.context.EmptyContext;
 
@@ -30,13 +31,16 @@ public class TaskBean implements TaskLocal {
     @Inject
     private RuntimeManagerFactory managerFactory;
     
+    @Inject
+    @RewardsRuntimeEnvironment
+    private RuntimeEnvironment runtimeEnvironment;
+    
     @Resource
     private UserTransaction ut;
 
     public List<TaskSummary> retrieveTaskList(String actorId) throws Exception {
 
-        RuntimeEnvironmentBuilder builder = RuntimeEnvironmentBuilder.getDefault();
-        RuntimeManager manager = managerFactory.newSingletonRuntimeManager(builder.get());
+        RuntimeManager manager = managerFactory.newSingletonRuntimeManager(runtimeEnvironment);
         RuntimeEngine runtime = manager.getRuntimeEngine(EmptyContext.get());
         TaskService taskService = runtime.getTaskService();
 

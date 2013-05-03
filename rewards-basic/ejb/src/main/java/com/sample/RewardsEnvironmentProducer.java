@@ -10,6 +10,8 @@ import javax.persistence.PersistenceUnit;
 
 import org.jbpm.runtime.manager.impl.RuntimeEnvironmentBuilder;
 import org.jbpm.services.task.identity.JBossUserGroupCallbackImpl;
+import org.kie.api.io.ResourceType;
+import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.runtime.manager.RuntimeEnvironment;
 import org.kie.internal.runtime.manager.cdi.qualifier.PerProcessInstance;
 import org.kie.internal.runtime.manager.cdi.qualifier.PerRequest;
@@ -36,10 +38,12 @@ public class RewardsEnvironmentProducer {
     @Singleton
     @PerRequest
     @PerProcessInstance
+    @RewardsRuntimeEnvironment
     public RuntimeEnvironment produceEnvironment(EntityManagerFactory emf) {
         Properties properties= new Properties();
         RuntimeEnvironment environment = RuntimeEnvironmentBuilder.getDefault()
                 .entityManagerFactory(emf).userGroupCallback(new JBossUserGroupCallbackImpl(properties))
+                .addAsset(ResourceFactory.newClassPathResource("rewards-basic.bpmn"), ResourceType.BPMN2)
                 .get();
         return environment;
     }
