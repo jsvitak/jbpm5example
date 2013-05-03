@@ -1,5 +1,6 @@
 <%@ page import="org.kie.api.task.model.TaskSummary" %>
 <%@ page import="java.util.List" %>
+<!DOCTYPE html>
 <html>
 <head>
 <title>Task management</title>
@@ -8,10 +9,12 @@
 <% String user = request.getParameter("user"); %>
 <p><%= user %>'s Task</p>
 <table border="1">
+<tr>
 <th>Task Name</th>
 <th>Task Id</th>
 <th>ProcessInstance Id</th>
 <th>Action</th>
+</tr>
 <% for (TaskSummary task : (List<TaskSummary>)request.getAttribute("taskList")) { %>
 <tr>
 <td><%= task.getName() %></td>

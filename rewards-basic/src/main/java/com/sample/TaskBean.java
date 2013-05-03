@@ -12,7 +12,6 @@ import javax.transaction.RollbackException;
 import javax.transaction.Status;
 import javax.transaction.UserTransaction;
 
-import org.jbpm.runtime.manager.impl.RuntimeEnvironmentBuilder;
 import org.jbpm.services.task.exception.PermissionDeniedException;
 import org.kie.api.runtime.manager.RuntimeEngine;
 import org.kie.api.runtime.manager.RuntimeManager;
@@ -34,13 +33,20 @@ public class TaskBean implements TaskLocal {
     @Inject
     @RewardsRuntimeEnvironment
     private RuntimeEnvironment runtimeEnvironment;
+
     
     @Resource
     private UserTransaction ut;
 
+//  injecting results in NPE of RuntimeEngine, manager is injected fine, but getRuntimeEngine returns null
+//    @Inject
+    RuntimeManager manager;
+    
     public List<TaskSummary> retrieveTaskList(String actorId) throws Exception {
 
-        RuntimeManager manager = managerFactory.newSingletonRuntimeManager(runtimeEnvironment);
+        // this ugly if works for requests coming only to one bean..
+        if (manager == null)
+            manager = managerFactory.newSingletonRuntimeManager(runtimeEnvironment);
         RuntimeEngine runtime = manager.getRuntimeEngine(EmptyContext.get());
         TaskService taskService = runtime.getTaskService();
 
@@ -56,8 +62,8 @@ public class TaskBean implements TaskLocal {
 
     public void approveTask(String actorId, long taskId) throws Exception {
 
-        RuntimeEnvironmentBuilder builder = RuntimeEnvironmentBuilder.getDefault();
-        RuntimeManager manager = managerFactory.newSingletonRuntimeManager(builder.get());
+//        RuntimeEnvironmentBuilder builder = RuntimeEnvironmentBuilder.getDefault();
+//        RuntimeManager manager = managerFactory.newSingletonRuntimeManager(builder.get());
         RuntimeEngine runtime = manager.getRuntimeEngine(EmptyContext.get());
         TaskService taskService = runtime.getTaskService();
 

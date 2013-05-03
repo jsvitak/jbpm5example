@@ -33,10 +33,17 @@ public class ProcessBean implements ProcessLocal {
     @Inject
     @RewardsRuntimeEnvironment
     private RuntimeEnvironment runtimeEnvironment;
+
+    
+//    injecting results in NPE of RuntimeEngine, manager is injected fine, but getRuntimeEngine returns null
+//    @Inject
+    RuntimeManager manager;
     
     public long startProcess(String recipient) throws Exception {
-     
-        RuntimeManager manager = managerFactory.newSingletonRuntimeManager(runtimeEnvironment);
+
+        // this "ugly if" works for requests coming only to one bean..
+        if (manager == null)
+            manager = managerFactory.newPerRequestRuntimeManager(runtimeEnvironment);
         RuntimeEngine runtime = manager.getRuntimeEngine(EmptyContext.get());
         KieSession ksession = runtime.getKieSession();
         
