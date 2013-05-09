@@ -10,7 +10,7 @@
 
   <persistence-unit name="org.jbpm.persistence.jpa" transaction-type="JTA">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>        
+    <jta-data-source>java:jboss/datasources/jbpmDS</jta-data-source>        
         <mapping-file>META-INF/JBPMorm.xml</mapping-file>
         <mapping-file>META-INF/Taskorm.xml</mapping-file>
         <class>org.drools.persistence.info.SessionInfo</class>
@@ -58,8 +58,8 @@
       <property name="hibernate.hbm2ddl.auto" value="create" />
       <property name="hibernate.show_sql" value="false" />	
       <property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup" />
-      <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
-	  <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/> -->
+      <!-- property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>-->
+	  <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
     </properties>        
   </persistence-unit>
     
