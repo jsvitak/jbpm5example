@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
-import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnit;
 
 import org.droolsjbpm.services.api.IdentityProvider;
 import org.jbpm.runtime.manager.impl.RuntimeEnvironmentBuilder;
@@ -29,16 +26,16 @@ import org.kie.internal.runtime.manager.cdi.qualifier.Singleton;
 import org.kie.internal.task.api.UserGroupCallback;
 
 @ApplicationScoped
-public class RewardsCDIProducer {
+public class RewardsApplicationScopedProducer {
 
+    @PersistenceUnit(unitName = "com.sample.rewards")
     private EntityManagerFactory emf;
 
     @Produces
     public EntityManagerFactory produceEntityManagerFactory() {
         if (this.emf == null) {
             this.emf = Persistence
-                    .createEntityManagerFactory("org.jbpm.persistence.jpa");
-
+                    .createEntityManagerFactory("com.sample.rewards");
         }
         return this.emf;
     }
@@ -60,29 +57,7 @@ public class RewardsCDIProducer {
         return environment;
     }
 
-    @Produces
-    @ApplicationScoped
-    public EntityManager getEntityManager() {
-        EntityManager em = produceEntityManagerFactory().createEntityManager();
-        em.getTransaction().begin();
-        return em;
-    }
 
-    @ApplicationScoped
-    public void commitAndClose(@Disposes EntityManager em) {
-        try {
-            em.getTransaction().commit();
-            em.close();
-        } catch (Exception e) {
-
-        }
-    }
-
-    @Produces
-    public Logger createLogger(InjectionPoint injectionPoint) {
-        return Logger.getLogger(injectionPoint.getMember().getDeclaringClass()
-                .getName());
-    }
 
     @Produces
     @Named("ioStrategy")
