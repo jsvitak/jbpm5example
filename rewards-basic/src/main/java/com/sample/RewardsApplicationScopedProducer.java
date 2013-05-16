@@ -73,7 +73,7 @@ public class RewardsApplicationScopedProducer {
     private class RewardsUserGroupCallback implements UserGroupCallback {
 
         public boolean existsUser(String userId) {
-            return userId.equals("john") || userId.equals("mary");
+            return userId.equals("john") || userId.equals("mary") || userId.equals("Administrator");
         }
 
         public boolean existsGroup(String groupId) {
