@@ -1,4 +1,4 @@
-package com.sample;
+package com.sample.ejb;
 
 import javax.ejb.Local;
 

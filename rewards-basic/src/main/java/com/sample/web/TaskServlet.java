@@ -1,4 +1,4 @@
-package com.sample;
+package com.sample.web;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sample.ejb.ProcessOperationException;
+import com.sample.ejb.TaskLocal;
 import org.kie.api.task.model.TaskSummary;
 
 

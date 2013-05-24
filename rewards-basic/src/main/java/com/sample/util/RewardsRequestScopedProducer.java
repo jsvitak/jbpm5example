@@ -1,4 +1,4 @@
-package com.sample;
+package com.sample.util;
 
 import java.util.logging.Logger;
 
