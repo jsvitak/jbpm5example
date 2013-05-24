@@ -144,11 +144,11 @@
       <artifactId>jbpm-shared-services</artifactId>
       <version>${product.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>droolsjbpm-knowledge-services</artifactId>
-      <version>${product.version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.jbpm</groupId>-->
+      <!--<artifactId>jbpm-kie-services</artifactId>-->
+      <!--<version>${product.version}</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.jboss.seam.persistence</groupId>
       <artifactId>seam-persistence</artifactId>
