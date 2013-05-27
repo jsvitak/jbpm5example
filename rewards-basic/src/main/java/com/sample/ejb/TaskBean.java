@@ -13,14 +13,8 @@ import javax.transaction.Status;
 import javax.transaction.UserTransaction;
 
 import org.jbpm.services.task.exception.PermissionDeniedException;
-import org.kie.api.runtime.manager.RuntimeEngine;
-import org.kie.api.runtime.manager.RuntimeManager;
 import org.kie.api.task.TaskService;
 import org.kie.api.task.model.TaskSummary;
-import org.kie.internal.runtime.manager.RuntimeEnvironment;
-import org.kie.internal.runtime.manager.RuntimeManagerFactory;
-import org.kie.internal.runtime.manager.cdi.qualifier.Singleton;
-import org.kie.internal.runtime.manager.context.EmptyContext;
 
 
 
@@ -32,17 +26,10 @@ public class TaskBean implements TaskLocal {
     @Resource
     private UserTransaction ut;
 
-//    @Inject
-//    @Singleton
-//    RuntimeManager manager;
-    
     @Inject
     TaskService taskService;
     
     public List<TaskSummary> retrieveTaskList(String actorId) throws Exception {
-
-//        RuntimeEngine runtime = manager.getRuntimeEngine(EmptyContext.get());
-//        TaskService taskService = runtime.getTaskService();
 
         List<TaskSummary> list = taskService.getTasksAssignedAsPotentialOwner(actorId, "en-UK");
 
@@ -55,9 +42,6 @@ public class TaskBean implements TaskLocal {
     }
 
     public void approveTask(String actorId, long taskId) throws Exception {
-
-//        RuntimeEngine runtime = manager.getRuntimeEngine(EmptyContext.get());
-//        TaskService taskService = runtime.getTaskService();
 
         ut.begin();
 
